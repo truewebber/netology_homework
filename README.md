@@ -1,2 +1,7 @@
-# netology_homework
-School homework for become a Professor in Netology
+### Задание
+[Тут](https://truewebber.com/go.html)
+
+#### Ответы на вопросы
+
+[Тут](./questionnaire.md)
+
