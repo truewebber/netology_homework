@@ -8,6 +8,7 @@ import (
 	"reflect"
 	"sync"
 	"testing"
+	"time"
 
 	"golang.org/x/net/context"
 
@@ -104,10 +105,14 @@ func Test_Server(t *testing.T) {
 				}
 			}()
 
+			// be sure http server started
+			time.Sleep(500 * time.Millisecond)
+
 			respBody, respCode, respErr := proceedReq(tt.request)
 
 			if (respErr != nil) != tt.wantErr {
 				t.Errorf("Request server, error = %v, wantErr %v", respErr, tt.wantErr)
+				return
 			}
 
 			if tt.wantRespCode != respCode || !reflect.DeepEqual(tt.wantRespBody, respBody) {
