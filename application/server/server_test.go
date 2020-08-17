@@ -123,15 +123,14 @@ func Test_Server(t *testing.T) {
 
 func proceedReq(req *http.Request) ([]byte, int, error) {
 	resp, respErr := http.DefaultClient.Do(req)
+	if respErr != nil {
+		return nil, 0, respErr
+	}
 	defer func() {
 		if err := resp.Body.Close(); err != nil {
 			panic(err)
 		}
 	}()
-
-	if respErr != nil {
-		return nil, 0, respErr
-	}
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
