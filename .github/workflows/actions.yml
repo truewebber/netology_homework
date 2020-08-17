@@ -1,0 +1,16 @@
+name: default actions
+
+on: [push, pull_request]
+
+jobs:
+
+  tests:
+    name: go test
+    runs-on: ubuntu-18.04
+    container: 
+      image: golang:1.14
+    steps:
+
+    - name: run all tests
+      run: |
+        go test -v ./...
